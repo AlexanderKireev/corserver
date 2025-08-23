@@ -15,7 +15,7 @@ const sendRequest = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        console.log(new Date().toLocaleString());
+        console.log(new Date());
         errorCounter = 0;
         return response;
       })
