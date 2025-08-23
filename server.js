@@ -8,7 +8,7 @@ let errorCounter = 0;
 const getRandom = (min, max) => Math.floor(min + Math.random() * (max - min));
 
 const sendRequest = () => {
-  const randomTimeout = getRandom(300000, 540000);
+  const randomTimeout = getRandom(600000, 1080000);
   setTimeout(() => {
     fetch("https://corserver-1.onrender.com/?" + getRandom(1000000, 9999999))
       .then((response) => {
