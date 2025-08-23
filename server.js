@@ -8,20 +8,22 @@ let errorCounter = 0;
 const getRandom = (min, max) => Math.floor(min + Math.random() * (max - min));
 
 const sendRequest = () => {
-  const randomTimeout = getRandom(600000, 1080000);
+  const randomTimeout = getRandom(300000, 540000);
   setTimeout(() => {
     fetch("https://corserver-1.onrender.com/?" + getRandom(1000000, 9999999))
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        console.log(new Date());
+        let myDate = new Date();
+        myDate.setHours(myDate.getHours() + 3);
+        console.log(myDate.toLocaleString());
         errorCounter = 0;
         return response;
       })
       .catch(() => {
         errorCounter += 1;
-        console.error("Ошибка fetch", errorCounter);
+        console.error("Fetch error", errorCounter);
         sendRequest();
       });
   }, randomTimeout);
