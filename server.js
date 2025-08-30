@@ -8,7 +8,7 @@ let errorCounter = 0;
 const getRandom = (min, max) => Math.floor(min + Math.random() * (max - min));
 
 const sendRequest = () => {
-  const randomTimeout = getRandom(300000, 540000);
+const randomTimeout = getRandom(300000, 540000);
   setTimeout(() => {
     fetch("https://corserver-1.onrender.com/?" + getRandom(1000000, 9999999))
       .then((response) => {
@@ -25,6 +25,20 @@ const sendRequest = () => {
         errorCounter += 1;
         console.error("Fetch error", errorCounter);
         sendRequest();
+      });
+      fetch("https://frontend-project-12-b0jh.onrender.com/")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let myDate = new Date();
+        myDate.setHours(myDate.getHours() + 3);
+        console.log("pr-12_run: " + myDate.toLocaleString());
+        errorCounter = 0;
+        return response;
+      })
+      .catch(() => {
+        console.error("pr-12_fetch_error");
       });
   }, randomTimeout);
 };
